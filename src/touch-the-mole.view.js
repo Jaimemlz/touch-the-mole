@@ -8,7 +8,7 @@ export class TouchTheMoleView extends TouchTheMoleViewmodel {
 
   render() {
     return html` <p>TOCA AL TOPO</p>
-      <game-panel></game-panel>`;
+      <game-panel play></game-panel>`;
   }
 }
 

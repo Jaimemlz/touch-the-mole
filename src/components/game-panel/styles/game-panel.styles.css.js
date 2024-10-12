@@ -5,6 +5,8 @@ export const GamePanelStyles = css`
     display: grid;
     grid-template-columns: repeat(var(--grid-columns), 1fr);
     grid-template-rows: repeat(var(--grid-rows), 1fr);
-    border: 2px solid black;
+    border: 4px solid black;
+    border-radius: 15px;
+    overflow: hidden;
   }
 `;

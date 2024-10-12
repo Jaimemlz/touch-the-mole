@@ -6,7 +6,7 @@ export class PanelCellView extends PanelCellViewmodel {
   static styles = [PanelCellStyles];
 
   render() {
-    return html``;
+    return html` ${this.animationTime ? html`<h1>X</h1>` : html``}`;
   }
 }
 

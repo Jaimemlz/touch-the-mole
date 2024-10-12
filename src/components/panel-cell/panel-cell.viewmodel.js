@@ -4,14 +4,13 @@ export class PanelCellViewmodel extends LitElement {
   static get properties() {
     return {
       /**
-       * The difficulty of the game.
+       * The duration (in milliseconds) for which the mole is visible and clickable in the game.
        */
-      difficulty: { type: String },
+      animationTime: { type: Number },
     };
   }
 
   constructor() {
     super();
-    this.difficulty = "Easy";
   }
 }

@@ -12,6 +12,22 @@ export class GamePanelViewmodel extends LitElement {
        * The nums of rows.
        */
       rows: { type: Number },
+
+      /**
+       * The duration (in milliseconds) for which the mole is visible and clickable in the game.
+       */
+      animationTime: { type: Number },
+
+      /**
+       * A boolean that indicates whether the mole is currently visible and clickable in the game.
+       * When true, the mole can be interacted with. When false, the mole is hidden or inactive.
+       */
+      play: { type: Boolean, reflect: true },
+
+      /**
+       * The cell has actived.
+       */
+      _cellActive: { type: Number, state: true },
     };
   }
 
@@ -19,11 +35,55 @@ export class GamePanelViewmodel extends LitElement {
     super();
     this.columns = 3;
     this.rows = 3;
+    this._active = 0;
+    this.animationTime = 1500;
+    this.play = false;
   }
 
   updated(changedProperties) {
     super.updated(changedProperties);
+
+    if (changedProperties.has("columns") || changedProperties.has("rows")) {
+      this.style.setProperty("--grid-columns", this.columns);
+      this.style.setProperty("--grid-rows", this.rows);
+    }
+
+    if (changedProperties.has("play")) {
+      this.play
+        ? this._startRandomCellGeneration()
+        : this._stopRandomCellGeneration();
+    }
+  }
+
+  _updateGridStyle() {
     this.style.setProperty("--grid-columns", this.columns);
     this.style.setProperty("--grid-rows", this.rows);
+  }
+
+  _startRandomCellGeneration() {
+    this._stopRandomCellGeneration(); // Detiene cualquier intervalo existente
+    this._interval = setInterval(() => {
+      this._generateNumCellActived();
+      console.log("Nueva celda activada: ", this._cellActive); // Verifica si el número cambió correctamente
+    }, this.animationTime);
+  }
+
+  _stopRandomCellGeneration() {
+    if (this._interval) {
+      clearInterval(this._interval); // Detiene el intervalo actual
+      this._interval = null;
+    }
+  }
+
+  _generateNumCellActived() {
+    let newNumber;
+    do {
+      newNumber = this._generateNumRandom();
+    } while (newNumber === this._cellActive);
+    this._cellActive = newNumber;
+  }
+
+  _generateNumRandom() {
+    return Math.floor(Math.random() * this.columns * this.rows) + 1;
   }
 }
