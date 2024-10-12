@@ -14,7 +14,6 @@ export class GamePanelView extends GamePanelViewmodel {
   }
 
   _renderCell(index) {
-    console.log(index, this._cellActive, index == this._cellActive);
     return html`
       ${when(
         index == this._cellActive,
@@ -25,7 +24,10 @@ export class GamePanelView extends GamePanelViewmodel {
   }
 
   _renderActiveCell = () => {
-    return html`<panel-cell .animationTime=${this.animationTime}></panel-cell>`;
+    return html`<panel-cell
+      .animationTime=${this.animationTime}
+      @panel-cell:clicked=${this.handleClickEvent}
+    ></panel-cell>`;
   };
 
   _renderNormalCell = () => {

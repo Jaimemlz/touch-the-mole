@@ -61,16 +61,15 @@ export class GamePanelViewmodel extends LitElement {
   }
 
   _startRandomCellGeneration() {
-    this._stopRandomCellGeneration(); // Detiene cualquier intervalo existente
+    this._stopRandomCellGeneration();
     this._interval = setInterval(() => {
       this._generateNumCellActived();
-      console.log("Nueva celda activada: ", this._cellActive); // Verifica si el número cambió correctamente
     }, this.animationTime);
   }
 
   _stopRandomCellGeneration() {
     if (this._interval) {
-      clearInterval(this._interval); // Detiene el intervalo actual
+      clearInterval(this._interval);
       this._interval = null;
     }
   }
@@ -85,5 +84,10 @@ export class GamePanelViewmodel extends LitElement {
 
   _generateNumRandom() {
     return Math.floor(Math.random() * this.columns * this.rows) + 1;
+  }
+
+  handleClickEvent() {
+    const event = new CustomEvent("game-panel:clickedCellActived");
+    this.dispatchEvent(event);
   }
 }

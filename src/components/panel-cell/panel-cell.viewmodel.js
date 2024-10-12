@@ -13,4 +13,17 @@ export class PanelCellViewmodel extends LitElement {
   constructor() {
     super();
   }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.addEventListener("click", this._handleClick);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.removeEventListener("click", this._handleClick);
+  }
+
+  _handleClick = () =>
+    this.dispatchEvent(new CustomEvent("panel-cell:clicked"));
 }
