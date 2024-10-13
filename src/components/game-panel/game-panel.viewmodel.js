@@ -97,8 +97,6 @@ export class GamePanelViewmodel extends LitElement {
     return Math.floor(Math.random() * this.columns * this.rows) + 1;
   }
 
-  handleClickEvent() {
-    const event = new CustomEvent("game-panel:clickedCellActived");
-    this.dispatchEvent(event);
-  }
+  handleClickEvent = () =>
+    this.dispatchEvent(new CustomEvent("game-panel:clickedCellActived"));
 }
