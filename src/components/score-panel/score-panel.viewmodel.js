@@ -41,7 +41,12 @@ export class ScorePanelViewmodel extends LitElement {
 
     if (changedProperties.has("incrementScore") && this.incrementScore) {
       this._points += this.pointsPerClick;
-      this.incrementScore = false;
+
+      this.shadowRoot.querySelector(".score").classList.add("increment");
+      setTimeout(() => {
+        this.shadowRoot.querySelector(".score").classList.remove("increment");
+        this.incrementScore = false;
+      }, 500);
     }
 
     if (changedProperties.has("resetScore") && this.resetScore) {

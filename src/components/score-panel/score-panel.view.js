@@ -6,7 +6,7 @@ export class ScorePanelView extends ScorePanelViewmodel {
   static styles = [ScorePanelStyles];
 
   render() {
-    return html` PUNTOS: ${this._points}`;
+    return html` <div class="score">${this._points}</div>`;
   }
 }
 
