@@ -10,33 +10,39 @@ export const PanelCellStyles = css`
     background-image: url("/images/hole.webp");
     background-size: cover;
     background-position: center;
+    --mole-animation-duration: 2s;
   }
 
   .cell__mole {
-    width: 100px;
-    height: 100px;
+    width: 70%;
+    height: 70%;
     cursor: pointer;
   }
 
   .cell__mole--normal {
     background: url("images/mole.png") no-repeat center;
     background-size: contain;
-    animation: moleAnimation 2s infinite;
+    animation: moleAnimation var(--mole-animation-duration) infinite;
   }
 
   .cell__mole--hurt {
     background: url("images/mole-hurt.png") no-repeat center;
     background-size: contain;
-    animation: moleAnimation 2s infinite;
+    animation: moleAnimation var(--mole-animation-duration) infinite;
   }
 
   @keyframes moleAnimation {
     0% {
-      transform: translateY(-13%);
+      transform: translateY(0%);
       opacity: 0;
     }
 
-    40% {
+    20% {
+      transform: translateY(-13%);
+      opacity: 100%;
+    }
+
+    70% {
       transform: translateY(-13%);
       opacity: 100%;
     }
