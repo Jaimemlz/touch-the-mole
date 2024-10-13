@@ -14,15 +14,17 @@ export class GamePanelViewmodel extends LitElement {
       rows: { type: Number },
 
       /**
-       * The duration (in milliseconds) for which the mole is visible and clickable in the game.
-       */
-      animationTime: { type: Number },
-
-      /**
        * A boolean that indicates whether the mole is currently visible and clickable in the game.
        * When true, the mole can be interacted with. When false, the mole is hidden or inactive.
        */
       play: { type: Boolean, reflect: true },
+
+      /**
+       * The currently selected difficulty level of the game.
+       * This number corresponds to the player's choice of difficulty, where different values represent specific difficulty tiers.
+       * The possible values are integers that indicate the level, such as 1 for "Easy", 2 for "Medium", 3 for "Hard", and 4 for "Expert".
+       */
+      difficulty: { type: Number },
 
       /**
        * The cell has actived.
@@ -31,12 +33,18 @@ export class GamePanelViewmodel extends LitElement {
     };
   }
 
+  static DIFFICULTY_TIMINGS = Object.freeze({
+    1: 1000, // Fácil: 1000 ms
+    2: 750, // Media: 750 ms
+    3: 500, // Difícil: 500 ms
+    4: 500, // Experto: 500 ms
+  });
+
   constructor() {
     super();
     this.columns = 3;
     this.rows = 3;
     this._active = 0;
-    this.animationTime = 1500;
     this.play = false;
   }
 
@@ -55,6 +63,9 @@ export class GamePanelViewmodel extends LitElement {
     }
   }
 
+  getAnimationTime = () =>
+    GamePanelViewmodel.DIFFICULTY_TIMINGS[this.difficulty];
+
   _updateGridStyle() {
     this.style.setProperty("--grid-columns", this.columns);
     this.style.setProperty("--grid-rows", this.rows);
@@ -64,7 +75,7 @@ export class GamePanelViewmodel extends LitElement {
     this._stopRandomCellGeneration();
     this._interval = setInterval(() => {
       this._generateNumCellActived();
-    }, this.animationTime);
+    }, this.getAnimationTime());
   }
 
   _stopRandomCellGeneration() {

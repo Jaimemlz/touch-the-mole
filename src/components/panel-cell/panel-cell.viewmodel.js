@@ -20,6 +20,17 @@ export class PanelCellViewmodel extends LitElement {
     this._clicked = false;
   }
 
+  updated(changedProperties) {
+    super.updated(changedProperties);
+
+    if (changedProperties.has("animationTime")) {
+      this.style.setProperty(
+        "--mole-animation-duration",
+        `${this.animationTime}ms`
+      );
+    }
+  }
+
   connectedCallback() {
     super.connectedCallback();
     this.addEventListener("click", this._handleClick);

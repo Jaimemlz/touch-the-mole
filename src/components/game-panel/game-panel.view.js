@@ -25,7 +25,7 @@ export class GamePanelView extends GamePanelViewmodel {
 
   _renderActiveCell = () => {
     return html`<panel-cell
-      .animationTime=${this.animationTime}
+      .animationTime=${this.getAnimationTime()}
       @panel-cell:clicked=${this.handleClickEvent}
     ></panel-cell>`;
   };
