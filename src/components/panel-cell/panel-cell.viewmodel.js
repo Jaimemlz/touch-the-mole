@@ -7,11 +7,17 @@ export class PanelCellViewmodel extends LitElement {
        * The duration (in milliseconds) for which the mole is visible and clickable in the game.
        */
       animationTime: { type: Number },
+
+      /**
+       * The state of the cell is clicked.
+       */
+      _clicked: { type: Boolean, state: true },
     };
   }
 
   constructor() {
     super();
+    this._clicked = false;
   }
 
   connectedCallback() {
@@ -24,6 +30,8 @@ export class PanelCellViewmodel extends LitElement {
     this.removeEventListener("click", this._handleClick);
   }
 
-  _handleClick = () =>
-    this.dispatchEvent(new CustomEvent("panel-cell:clicked"));
+  _handleClick = () => {
+    this._clicked = true;
+    return this.dispatchEvent(new CustomEvent("panel-cell:clicked"));
+  };
 }
