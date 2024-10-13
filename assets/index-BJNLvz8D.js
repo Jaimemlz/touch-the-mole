@@ -38,7 +38,8 @@ var ge=Object.defineProperty;var be=(n,e,t)=>e in n?ge(n,e,{enumerable:!0,config
     display: grid;
     grid-template-columns: repeat(var(--grid-columns), 1fr);
     grid-template-rows: repeat(var(--grid-rows), 1fr);
-    overflow: hidden;
+    width: 90vw;
+    max-width: 600px;
     border-radius: 15px;
     box-shadow: 0 20px 40px rgba(174, 123, 86), 0 10px 20px rgba(174, 123, 86);
   }
@@ -48,15 +49,14 @@ var ge=Object.defineProperty;var be=(n,e,t)=>e in n?ge(n,e,{enumerable:!0,config
  * SPDX-License-Identifier: BSD-3-Clause
  */function J(n,e,t){return n?e(n):t==null?void 0:t(n)}class Ve extends m{constructor(){super();h(this,"_handleClick",()=>(this._clicked=!0,this.dispatchEvent(new CustomEvent("panel-cell:clicked"))));this._clicked=!1}static get properties(){return{animationTime:{type:Number},_clicked:{type:Boolean,state:!0}}}updated(t){super.updated(t),t.has("animationTime")&&this.style.setProperty("--mole-animation-duration",`${this.animationTime}ms`)}connectedCallback(){super.connectedCallback(),this.addEventListener("click",this._handleClick)}disconnectedCallback(){super.disconnectedCallback(),this.removeEventListener("click",this._handleClick)}}const Fe=x`
   :host {
-    height: 150px;
-    width: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('./images/hole.webp');
+    background-image: url("./images/hole.webp");
     background-size: cover;
     background-position: center;
     --mole-animation-duration: 2s;
+    aspect-ratio: 1 / 1;
   }
 
   .cell__mole {
@@ -67,13 +67,13 @@ var ge=Object.defineProperty;var be=(n,e,t)=>e in n?ge(n,e,{enumerable:!0,config
   }
 
   .cell__mole--normal {
-    background: url('images/mole.png') no-repeat center;
+    background: url("images/mole.png") no-repeat center;
     background-size: contain;
     animation: moleAnimation var(--mole-animation-duration) ease-in-out 1;
   }
 
   .cell__mole--hurt {
-    background: url('images/mole-hurt.png') no-repeat center;
+    background: url("images/mole-hurt.png") no-repeat center;
     background-size: contain;
     animation: none;
     transform: translateY(-7%);
@@ -129,7 +129,7 @@ var ge=Object.defineProperty;var be=(n,e,t)=>e in n?ge(n,e,{enumerable:!0,config
     background: radial-gradient(circle at center, rgb(174, 124, 86), #e7d19b);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    -webkit-text-stroke: 0.1px white;
+    -webkit-text-stroke: 1px white;
   }
 
   .increment {
@@ -255,7 +255,7 @@ var ge=Object.defineProperty;var be=(n,e,t)=>e in n?ge(n,e,{enumerable:!0,config
       <div>
         ${Y.DIFFICULTY_LEVELS.map((t,s)=>this._renderButton(t,s+1))}
       </div>
-    `}}h($e,"styles",[Xe]);window.customElements.define("difficulty-panel",$e);class ye extends ze{constructor(){super(...arguments);h(this,"_renderLoginPanel",()=>f` <login-panel @login-panel:login=${this.handleLogin}></login-panel> `);h(this,"_renderGamePanel",()=>f`
+    `}}h($e,"styles",[Xe]);window.customElements.define("difficulty-panel",$e);class ye extends ze{constructor(){super();h(this,"_renderLoginPanel",()=>f` <login-panel @login-panel:login=${this.handleLogin}></login-panel> `);h(this,"_renderGamePanel",()=>f`
     <game-panel
       play
       .difficulty=${this.difficulty}
@@ -266,4 +266,4 @@ var ge=Object.defineProperty;var be=(n,e,t)=>e in n?ge(n,e,{enumerable:!0,config
       .difficulty=${this.difficulty}
       @difficulty-panel:changed=${this.handleDifficultyChanged}
     ></difficulty-panel>
-  `)}render(){return console.log("this.user",this.user),f` ${J(this.user,this._renderGamePanel,this._renderLoginPanel)}`}}h(ye,"styles",[Be]);window.customElements.define("touch-the-mole",ye);
+  `);this.user="Jaime"}render(){return f` ${J(this.user,this._renderGamePanel,this._renderLoginPanel)}`}}h(ye,"styles",[Be]);window.customElements.define("touch-the-mole",ye);
