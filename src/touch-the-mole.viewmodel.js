@@ -16,6 +16,12 @@ export class TouchTheMoleViewmodel extends LitElement {
       difficulty: { type: Number },
 
       /**
+       * A boolean that indicates whether the mole is currently visible and clickable in the game.
+       * When true, the mole can be interacted with. When false, the mole is hidden or inactive.
+       */
+      play: { type: Boolean, reflect: true },
+
+      /**
        * A boolean to trigger incrementing the score.
        * When true, the score will be incremented by a specified amount.
        */
@@ -27,6 +33,7 @@ export class TouchTheMoleViewmodel extends LitElement {
     super();
     this.difficulty = 1;
     this._hasIncrementScore = false;
+    this.play = false;
   }
 
   updated(changedProperties) {
@@ -60,5 +67,9 @@ export class TouchTheMoleViewmodel extends LitElement {
 
   handleLogout() {
     this.user = "";
+  }
+
+  handleToggleGame() {
+    this.play = !this.play;
   }
 }

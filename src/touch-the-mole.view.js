@@ -6,6 +6,7 @@ import "./components/score-panel/score-panel.view";
 import "./components/login-panel/login-panel.view";
 import "./components/difficulty-panel/difficulty-panel.view";
 import { when } from "lit/directives/when.js";
+import { classMap } from "lit/directives/class-map.js";
 
 export class TouchTheMoleView extends TouchTheMoleViewmodel {
   static styles = [touchTheMoleStyles];
@@ -27,6 +28,7 @@ export class TouchTheMoleView extends TouchTheMoleViewmodel {
       <img src="./public/images/user.svg" />
       <p>${this.user}</p>
     </div>
+    ${this._renderButtonStartOrPause()}
     <button @click=${this.handleLogout} class="game__logout">
       <img src="./public/images/logout.svg" />
     </button>
@@ -38,7 +40,7 @@ export class TouchTheMoleView extends TouchTheMoleViewmodel {
     ></score-panel>`;
 
   _renderGamePanel = () => html` <game-panel
-    play
+    .play=${this.play}
     .difficulty=${this.difficulty}
     @game-panel:clickedCellActived=${this.handleIncrement}
   ></game-panel>`;
@@ -48,6 +50,24 @@ export class TouchTheMoleView extends TouchTheMoleViewmodel {
       .difficulty=${this.difficulty}
       @difficulty-panel:changed=${this.handleDifficultyChanged}
     ></difficulty-panel>`;
+
+  _renderButtonStartOrPause = () => {
+    const classes = {
+      "game__toggle-button--on": !this.play,
+      "game__toggle-button--pause": this.play,
+    };
+
+    return html` <button
+      class="game__toggle-button ${classMap(classes)}"
+      @click=${this.handleToggleGame}
+    >
+      ${when(
+        this.play,
+        () => html` <img src="./public/images/pause.svg" /> `,
+        () => html` <img src="./public/images/play.svg" /> `
+      )}
+    </button>`;
+  };
 }
 
 window.customElements.define("touch-the-mole", TouchTheMoleView);

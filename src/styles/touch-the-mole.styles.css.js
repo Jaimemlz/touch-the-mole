@@ -4,13 +4,13 @@ export const touchTheMoleStyles = css`
   :host {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     flex-grow: 1;
     font-family: Poppins, sans-serif;
     font-size: 2.5em;
     background: radial-gradient(circle, rgb(231, 209, 155), rgb(174, 124, 86));
     width: 100%;
+    height: 100%;
     gap: 20px;
     overflow: auto;
   }
@@ -73,7 +73,45 @@ export const touchTheMoleStyles = css`
     margin: 0 auto;
   }
 
+  .game__toggle-button {
+    border: 2px solid white;
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    position: absolute;
+    left: 50%;
+    z-index: 1;
+    transform: translateX(-50%);
+  }
+
+  .game__toggle-button img {
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .game__toggle-button--on {
+    background-color: #2ecc71;
+  }
+
+  .game__toggle-button--pause {
+    background-color: #e74c3c;
+  }
+
+  .game__toggle-button:hover {
+    opacity: 0.9;
+  }
+
   p {
     margin: 0;
+  }
+
+  @media screen and (max-width: 600px) {
+    .game__toggle-button {
+      bottom: 50px;
+    }
   }
 `;
