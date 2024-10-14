@@ -7,11 +7,9 @@ export class DifficultyPanelView extends DifficultyPanelViewmodel {
 
   render() {
     return html`
-      <div>
-        ${DifficultyPanelViewmodel.DIFFICULTY_LEVELS.map((level, index) =>
-          this._renderButton(level, index + 1)
-        )}
-      </div>
+      ${DifficultyPanelViewmodel.DIFFICULTY_LEVELS.map((level, index) =>
+        this._renderButton(level, index + 1)
+      )}
     `;
   }
 

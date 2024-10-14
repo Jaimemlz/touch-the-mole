@@ -8,11 +8,10 @@ export const ScorePanelStyles = css`
     font-family: "Russo One", sans-serif;
     font-size: 100px;
     font-weight: bold;
+    text-align: center;
     transition: transform 0.3s ease, opacity 0.3s ease;
-    background: radial-gradient(circle at center, rgb(174, 124, 86), #e7d19b);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -webkit-text-stroke: 0.1px white;
+    color: #ffffff;
+    text-shadow: 2px 2px 15px rgb(174, 124, 86);
   }
 
   .increment {
@@ -25,7 +24,7 @@ export const ScorePanelStyles = css`
     }
     50% {
       transform: scale(1.3);
-      opacity: 0.9;
+      color: #ede1d8;
     }
     100% {
       transform: scale(1);

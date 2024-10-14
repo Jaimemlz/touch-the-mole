@@ -11,7 +11,6 @@ export class TouchTheMoleView extends TouchTheMoleViewmodel {
   static styles = [touchTheMoleStyles];
 
   render() {
-    console.log("this.user", this.user);
     return html` ${when(
       this.user,
       this._renderGamePanel,

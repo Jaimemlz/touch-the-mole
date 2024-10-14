@@ -11,7 +11,8 @@ export const touchTheMoleStyles = css`
     background: radial-gradient(circle at center, #e7d19b, rgb(174, 124, 86));
     width: 100%;
     height: 100%;
-    gap: 35px;
+    gap: 20px;
+    overflow: auto;
   }
 
   p {

@@ -2,6 +2,9 @@ import { css } from "lit";
 
 export const DifficultyPanelStyles = css`
   :host {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .difficulty-option {
@@ -13,7 +16,7 @@ export const DifficultyPanelStyles = css`
     background-color: white;
     transition: background-color 0.3s ease;
     text-align: center;
-    min-width: 300px;
+    width: 300px;
   }
 
   .difficulty-option.selected {

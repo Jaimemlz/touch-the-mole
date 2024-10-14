@@ -1,16 +1,15 @@
-import { css } from 'lit';
+import { css } from "lit";
 
 export const PanelCellStyles = css`
   :host {
-    height: 150px;
-    width: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('./images/hole.webp');
+    background-image: url("./images/hole.webp");
     background-size: cover;
     background-position: center;
     --mole-animation-duration: 2s;
+    aspect-ratio: 1 / 1;
   }
 
   .cell__mole {
@@ -21,13 +20,13 @@ export const PanelCellStyles = css`
   }
 
   .cell__mole--normal {
-    background: url('images/mole.png') no-repeat center;
+    background: url("images/mole.png") no-repeat center;
     background-size: contain;
     animation: moleAnimation var(--mole-animation-duration) ease-in-out 1;
   }
 
   .cell__mole--hurt {
-    background: url('images/mole-hurt.png') no-repeat center;
+    background: url("images/mole-hurt.png") no-repeat center;
     background-size: contain;
     animation: none;
     transform: translateY(-7%);
