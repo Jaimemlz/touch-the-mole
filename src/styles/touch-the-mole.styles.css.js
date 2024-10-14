@@ -45,7 +45,7 @@ export const touchTheMoleStyles = css`
 
   .game__user p {
     font-family: "Poppins", sans-serif;
-    font-size: 30px;
+    font-size: 20px;
     color: white;
     margin: 0;
     text-shadow: 0 0px 1px white;
@@ -112,6 +112,14 @@ export const touchTheMoleStyles = css`
   @media screen and (max-width: 600px) {
     .game__toggle-button {
       bottom: 50px;
+    }
+
+    :host {
+      gap: 0;
+    }
+
+    difficulty-panel {
+      margin: 35px 0;
     }
   }
 `;

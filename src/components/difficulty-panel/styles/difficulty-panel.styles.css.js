@@ -5,6 +5,11 @@ export const DifficultyPanelStyles = css`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    width: 90vw;
+    max-width: 600px;
+    box-sizing: border-box;
+    padding: 0 15px;
   }
 
   .difficulty-option {
@@ -16,7 +21,7 @@ export const DifficultyPanelStyles = css`
     background-color: white;
     transition: background-color 0.3s ease;
     text-align: center;
-    width: 300px;
+    width: 100%;
   }
 
   .difficulty-option.selected {

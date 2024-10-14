@@ -5,7 +5,9 @@ export const LoginPanelStyles = css`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 30px;
+    height: 100%;
   }
 
   .login-input {
@@ -34,7 +36,8 @@ export const LoginPanelStyles = css`
   .login-label {
     font-size: 20px;
     font-family: "Poppins", sans-serif;
-    color: #333;
+    text-shadow: 0 1px 5px #ae7b56;
+    color: #ffffff;
     margin-bottom: 10px;
     margin: 0;
   }
