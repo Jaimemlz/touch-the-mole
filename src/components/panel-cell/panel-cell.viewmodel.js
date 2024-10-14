@@ -42,7 +42,9 @@ export class PanelCellViewmodel extends LitElement {
   }
 
   _handleClick = () => {
+    if (!this._clicked) {
+      this.dispatchEvent(new CustomEvent("panel-cell:clicked"));
+    }
     this._clicked = true;
-    return this.dispatchEvent(new CustomEvent("panel-cell:clicked"));
   };
 }

@@ -16,7 +16,7 @@ export class GamePanelView extends GamePanelViewmodel {
   _renderCell(index) {
     return html`
       ${when(
-        index == this._cellActive,
+        index == this._cellActive && this.play,
         this._renderActiveCell,
         this._renderNormalCell
       )}
