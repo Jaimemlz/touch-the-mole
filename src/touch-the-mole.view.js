@@ -25,12 +25,12 @@ export class TouchTheMoleView extends TouchTheMoleViewmodel {
 
   _renderHeader = () => html` <div class="game__header">
     <div class="game__user">
-      <img src="./public/images/user.svg" />
+      <img src="./images/user.svg" />
       <p>${this.user}</p>
     </div>
     ${this._renderButtonStartOrPause()}
     <button @click=${this.handleLogout} class="game__logout">
-      <img src="./public/images/logout.svg" />
+      <img src="./images/logout.svg" />
     </button>
   </div>`;
 
@@ -63,8 +63,8 @@ export class TouchTheMoleView extends TouchTheMoleViewmodel {
     >
       ${when(
         this.play,
-        () => html` <img src="./public/images/pause.svg" /> `,
-        () => html` <img src="./public/images/play.svg" /> `
+        () => html` <img src="./images/pause.svg" /> `,
+        () => html` <img src="./images/play.svg" /> `
       )}
     </button>`;
   };
