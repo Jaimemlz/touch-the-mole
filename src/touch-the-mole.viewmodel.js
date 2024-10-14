@@ -57,4 +57,8 @@ export class TouchTheMoleViewmodel extends LitElement {
   handleDifficultyChanged(e) {
     this.difficulty = e.detail;
   }
+
+  handleLogout() {
+    this.user = "";
+  }
 }

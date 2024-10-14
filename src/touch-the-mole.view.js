@@ -11,28 +11,43 @@ export class TouchTheMoleView extends TouchTheMoleViewmodel {
   static styles = [touchTheMoleStyles];
 
   render() {
-    return html` ${when(
-      this.user,
-      this._renderGamePanel,
-      this._renderLoginPanel
-    )}`;
+    return html` ${when(this.user, this._renderPage, this._renderLoginPanel)}`;
   }
 
   _renderLoginPanel = () =>
     html` <login-panel @login-panel:login=${this.handleLogin}></login-panel> `;
 
-  _renderGamePanel = () => html`
-    <game-panel
-      play
-      .difficulty=${this.difficulty}
-      @game-panel:clickedCellActived=${this.handleIncrement}
-    ></game-panel
-    ><score-panel .incrementScore=${this._hasIncrementScore}></score-panel>
-    <difficulty-panel
+  _renderPage = () => html`
+    ${this._renderHeader()} ${this._renderScore()} ${this._renderGamePanel()}
+    ${this._renderDifficultyPanel()}
+  `;
+
+  _renderHeader = () => html` <div class="game__header">
+    <div class="game__user">
+      <img src="./public/images/user.svg" />
+      <p>${this.user}</p>
+    </div>
+    <button @click=${this.handleLogout} class="game__logout">
+      <img src="./public/images/logout.svg" />
+    </button>
+  </div>`;
+
+  _renderScore = () =>
+    html` <score-panel
+      .incrementScore=${this._hasIncrementScore}
+    ></score-panel>`;
+
+  _renderGamePanel = () => html` <game-panel
+    play
+    .difficulty=${this.difficulty}
+    @game-panel:clickedCellActived=${this.handleIncrement}
+  ></game-panel>`;
+
+  _renderDifficultyPanel = () =>
+    html` <difficulty-panel
       .difficulty=${this.difficulty}
       @difficulty-panel:changed=${this.handleDifficultyChanged}
-    ></difficulty-panel>
-  `;
+    ></difficulty-panel>`;
 }
 
 window.customElements.define("touch-the-mole", TouchTheMoleView);
