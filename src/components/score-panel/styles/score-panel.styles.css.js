@@ -2,6 +2,8 @@ import { css } from "lit";
 
 export const ScorePanelStyles = css`
   :host {
+    display: flex;
+    width: fit-content;
   }
 
   .score {

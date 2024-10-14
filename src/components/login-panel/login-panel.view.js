@@ -6,15 +6,17 @@ export class LoginPanelView extends LoginPanelViewmodel {
   static styles = [LoginPanelStyles];
 
   render() {
-    return html` <label class="label" for="name">Escribe tu usario</label>
+    return html`
+      <label class="login-label" for="name">Escribe tu usario</label>
       <input
         type="text"
         id="name"
-        class="styled-input"
+        class="login-input"
         placeholder="Tu usuario aqui"
         @input=${this.handleInput}
       />
-      <button class="styled-button" @click=${this.handleLogin}>Jugar</button>`;
+      <button class="login-button" @click=${this.handleLogin}>Jugar</button>
+    `;
   }
 }
 

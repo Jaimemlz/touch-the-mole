@@ -8,7 +8,7 @@ export const LoginPanelStyles = css`
     gap: 30px;
   }
 
-  .styled-input {
+  .login-input {
     width: 300px;
     padding: 10px 20px;
     font-size: 18px;
@@ -20,18 +20,18 @@ export const LoginPanelStyles = css`
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
-  .styled-input:focus {
+  .login-input:focus {
     border-color: #e7d19b;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     background: white;
   }
 
-  .styled-input::placeholder {
+  .login-input::placeholder {
     color: #ae7b56;
     opacity: 0.8;
   }
 
-  .label {
+  .login-label {
     font-size: 20px;
     font-family: "Poppins", sans-serif;
     color: #333;
@@ -39,7 +39,7 @@ export const LoginPanelStyles = css`
     margin: 0;
   }
 
-  .styled-button {
+  .login-button {
     background-color: #ae7b56;
     color: white;
     font-size: 18px;
@@ -52,12 +52,12 @@ export const LoginPanelStyles = css`
     font-family: "Poppins", sans-serif;
   }
 
-  .styled-button:hover {
+  .login-button:hover {
     background-color: #e7d19b;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   }
 
-  .styled-button:active {
+  .login-button:active {
     background-color: #874f38;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     transform: scale(0.98);
