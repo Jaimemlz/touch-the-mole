@@ -369,12 +369,12 @@ var be=Object.defineProperty;var xe=(r,e,t)=>e in r?be(r,e,{enumerable:!0,config
     ${this._renderDifficultyPanel()}
   `);c(this,"_renderHeader",()=>d` <div class="game__header">
     <div class="game__user">
-      <img src="./public/images/user.svg" />
+      <img src="./images/user.svg" />
       <p>${this.user}</p>
     </div>
     ${this._renderButtonStartOrPause()}
     <button @click=${this.handleLogout} class="game__logout">
-      <img src="./public/images/logout.svg" />
+      <img src="./images/logout.svg" />
     </button>
   </div>`);c(this,"_renderScore",()=>d` <score-panel
       .incrementScore=${this._hasIncrementScore}
@@ -389,5 +389,5 @@ var be=Object.defineProperty;var xe=(r,e,t)=>e in r?be(r,e,{enumerable:!0,config
       class="game__toggle-button ${ue(t)}"
       @click=${this.handleToggleGame}
     >
-      ${M(this.play,()=>d` <img src="./public/images/pause.svg" /> `,()=>d` <img src="./public/images/play.svg" /> `)}
+      ${M(this.play,()=>d` <img src="./images/pause.svg" /> `,()=>d` <img src="./images/play.svg" /> `)}
     </button>`})}render(){return d` ${M(this.user,this._renderPage,this._renderLoginPanel)}`}}c(ye,"styles",[je]);window.customElements.define("touch-the-mole",ye);
