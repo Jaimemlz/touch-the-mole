@@ -630,7 +630,7 @@ try {
  * @license
  * Copyright 2021 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
- */function Re(i,t,e){return i?t(i):e==null?void 0:e(i)}class $n extends M{constructor(){super();_(this,"_handleClick",()=>{this._clicked||this.dispatchEvent(new CustomEvent("panel-cell:clicked")),this._clicked=!0});this._clicked=!1}static get properties(){return{animationTime:{type:Number},_clicked:{type:Boolean,state:!0}}}updated(e){super.updated(e),e.has("animationTime")&&this.style.setProperty("--mole-animation-duration",`${this.animationTime}ms`)}connectedCallback(){super.connectedCallback(),this.addEventListener("click",this._handleClick)}disconnectedCallback(){super.disconnectedCallback(),this.removeEventListener("click",this._handleClick)}}const An=se`
+ */function Re(i,t,e){return i?t(i):e==null?void 0:e(i)}class $n extends M{constructor(){super();_(this,"_handleClick",()=>{this._clicked||(this.dispatchEvent(new CustomEvent("panel-cell:clicked")),navigator.vibrate&&navigator.vibrate(200)),this._clicked=!0});this._clicked=!1}static get properties(){return{animationTime:{type:Number},_clicked:{type:Boolean,state:!0}}}updated(e){super.updated(e),e.has("animationTime")&&this.style.setProperty("--mole-animation-duration",`${this.animationTime}ms`)}connectedCallback(){super.connectedCallback(),this.addEventListener("click",this._handleClick)}disconnectedCallback(){super.disconnectedCallback(),this.removeEventListener("click",this._handleClick)}}const An=se`
   :host {
     display: flex;
     justify-content: center;
