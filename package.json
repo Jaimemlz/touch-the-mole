@@ -11,6 +11,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@vaadin/router": "^2.0.0-rc4",
     "lit": "^3.2.0"
   },
   "devDependencies": {

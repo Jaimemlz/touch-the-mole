@@ -1,4 +1,5 @@
 import { LitElement } from "lit";
+import { Router } from "@vaadin/router";
 
 export class TouchTheMoleViewmodel extends LitElement {
   static get properties() {
@@ -48,6 +49,15 @@ export class TouchTheMoleViewmodel extends LitElement {
       this._hasIncrementScore
     ) {
       this._hasIncrementScore = false;
+    }
+
+    if (this.user && window.location.pathname !== "/touch-the-mole/game") {
+      Router.go("/touch-the-mole/game");
+    } else if (
+      !this.user &&
+      window.location.pathname !== "/touch-the-mole/home"
+    ) {
+      Router.go("/touch-the-mole/home");
     }
   }
 

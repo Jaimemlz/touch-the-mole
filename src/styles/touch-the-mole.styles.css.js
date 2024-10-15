@@ -105,6 +105,10 @@ export const touchTheMoleStyles = css`
     opacity: 0.9;
   }
 
+  difficulty-panel {
+    margin: 35px 0;
+  }
+
   p {
     margin: 0;
   }
@@ -116,10 +120,6 @@ export const touchTheMoleStyles = css`
 
     :host {
       gap: 0;
-    }
-
-    difficulty-panel {
-      margin: 35px 0;
     }
   }
 `;
