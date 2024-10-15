@@ -14,9 +14,13 @@ export class GamePanelView extends GamePanelViewmodel {
   }
 
   _renderCell(index) {
+    const isActive = Array.isArray(this._cellActive)
+      ? this._cellActive.includes(index)
+      : index === this._cellActive;
+
     return html`
       ${when(
-        index == this._cellActive && this.play,
+        isActive && this.play,
         this._renderActiveCell,
         this._renderNormalCell
       )}

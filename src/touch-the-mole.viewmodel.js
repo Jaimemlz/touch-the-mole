@@ -107,6 +107,7 @@ export class TouchTheMoleViewmodel extends LitElement {
 
   handleDifficultyChanged(e) {
     this.difficulty = e.detail;
+    this.play = false;
     this._changeDifficulty();
   }
 
