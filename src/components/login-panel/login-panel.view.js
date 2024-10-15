@@ -14,6 +14,7 @@ export class LoginPanelView extends LoginPanelViewmodel {
         class="login-input"
         placeholder="Tu usuario aqui"
         @input=${this.handleInput}
+        @keydown=${this.handleKeyDown}
       />
       <button class="login-button" @click=${this.handleLogin}>Jugar</button>
     `;

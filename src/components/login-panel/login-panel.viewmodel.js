@@ -10,16 +10,18 @@ export class LoginPanelViewmodel extends LitElement {
     };
   }
 
-  constructor() {
-    super();
-  }
-
   updated(changedProperties) {
     super.updated(changedProperties);
   }
 
   handleInput(e) {
     this.user = e.target.value;
+  }
+
+  handleKeyDown(e) {
+    if (e.key === "Enter") {
+      this.handleLogin();
+    }
   }
 
   handleLogin = () =>
