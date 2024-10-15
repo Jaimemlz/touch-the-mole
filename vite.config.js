@@ -17,7 +17,7 @@ export default defineConfig({
         description: "A fun game to touch the mole",
         theme_color: "#ae7b56",
         background_color: "#ae7b56",
-        start_url: "/touch-the-mole/index.html",
+        start_url: "/touch-the-mole/",
         display: "standalone",
         icons: [
           {

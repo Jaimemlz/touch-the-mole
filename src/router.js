@@ -16,7 +16,7 @@ router.setRoutes([
   {
     path: "(.*)",
     action: (context, commands) => {
-      return commands.redirect("/touch-the-mole/game");
+      return commands.redirect("/touch-the-mole/");
     },
   },
 ]);
