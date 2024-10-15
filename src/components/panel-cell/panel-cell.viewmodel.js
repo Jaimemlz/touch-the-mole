@@ -4,6 +4,12 @@ export class PanelCellViewmodel extends LitElement {
   static get properties() {
     return {
       /**
+       * Indicates if the mole is an "error" cell.
+       * If true, the mole's appearance changes.
+       */
+      isErrorCell: { type: Boolean },
+
+      /**
        * The duration (in milliseconds) for which the mole is visible and clickable in the game.
        */
       animationTime: { type: Number },

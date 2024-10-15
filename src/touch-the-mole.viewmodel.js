@@ -29,6 +29,12 @@ export class TouchTheMoleViewmodel extends LitElement {
       _hasIncrementScore: { type: Boolean, state: true },
 
       /**
+       * A boolean to trigger decrement the score.
+       * When true, the score will be decremented by a specified amount.
+       */
+      _hasDecrementScore: { type: Boolean, state: true },
+
+      /**
        * The number of points awarded per click.
        * This state variable tracks how many points the player earns each time they successfully click a target.
        */
@@ -47,7 +53,9 @@ export class TouchTheMoleViewmodel extends LitElement {
     super();
     this.difficulty = 1;
     this._hasIncrementScore = false;
+    this._hasDecrementScore = false;
     this.play = false;
+    this.user = "Jaime";
   }
 
   updated(changedProperties) {
@@ -62,6 +70,13 @@ export class TouchTheMoleViewmodel extends LitElement {
       this._hasIncrementScore
     ) {
       this._hasIncrementScore = false;
+    }
+
+    if (
+      changedProperties.has("_hasDecrementScore") &&
+      this._hasDecrementScore
+    ) {
+      this._hasDecrementScore = false;
     }
 
     if (this.user && window.location.pathname !== "/touch-the-mole/game") {
@@ -84,6 +99,10 @@ export class TouchTheMoleViewmodel extends LitElement {
 
   handleIncrement() {
     this._hasIncrementScore = true;
+  }
+
+  handleDecrement() {
+    this._hasDecrementScore = true;
   }
 
   handleDifficultyChanged(e) {

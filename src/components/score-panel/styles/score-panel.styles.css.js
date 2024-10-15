@@ -26,7 +26,25 @@ export const ScorePanelStyles = css`
     }
     50% {
       transform: scale(1.3);
-      color: #ede1d8;
+      color: #c2ffc7;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .decrement {
+    animation: popScoreDecrement 0.5s ease-in-out;
+  }
+
+  @keyframes popScoreDecrement {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.3);
+      color: red;
     }
     100% {
       transform: scale(1);

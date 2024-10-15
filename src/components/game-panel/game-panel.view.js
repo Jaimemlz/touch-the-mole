@@ -24,9 +24,25 @@ export class GamePanelView extends GamePanelViewmodel {
   }
 
   _renderActiveCell = () => {
+    return html`${when(
+      this._hasTwentyPercentChance(),
+      this._renderErrorCell,
+      this._renderCorrectCell
+    )}`;
+  };
+
+  _renderCorrectCell = () => {
     return html`<panel-cell
       .animationTime=${this.getAnimationTime()}
       @panel-cell:clicked=${this.handleClickEvent}
+    ></panel-cell>`;
+  };
+
+  _renderErrorCell = () => {
+    return html`<panel-cell
+      isErrorCell
+      .animationTime=${this.getAnimationTime()}
+      @panel-cell:clicked=${this.handleErrorClickEvent}
     ></panel-cell>`;
   };
 

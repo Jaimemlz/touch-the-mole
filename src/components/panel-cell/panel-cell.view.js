@@ -15,6 +15,8 @@ export class PanelCellView extends PanelCellViewmodel {
     const classes = {
       "cell__mole--normal": !this._clicked,
       "cell__mole--hurt": this._clicked,
+      "cell__mole-error--normal": !this._clicked && this.isErrorCell,
+      "cell__mole-error--hurt": this._clicked && this.isErrorCell,
     };
 
     return html`<div class="cell__mole ${classMap(classes)}"></div>`;

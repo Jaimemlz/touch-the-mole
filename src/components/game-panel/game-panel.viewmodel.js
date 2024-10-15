@@ -37,7 +37,7 @@ export class GamePanelViewmodel extends LitElement {
     1: 1000, // Fácil: 1000 ms
     2: 750, // Media: 750 ms
     3: 500, // Difícil: 500 ms
-    4: 500, // Experto: 500 ms
+    4: 400, // Experto: 400 ms
   });
 
   constructor() {
@@ -97,6 +97,11 @@ export class GamePanelViewmodel extends LitElement {
     return Math.floor(Math.random() * this.columns * this.rows) + 1;
   }
 
+  _hasTwentyPercentChance = () => Math.random() < 0.2;
+
   handleClickEvent = () =>
-    this.dispatchEvent(new CustomEvent("game-panel:clickedCellActived"));
+    this.dispatchEvent(new CustomEvent("game-panel:clickedCorrectCell"));
+
+  handleErrorClickEvent = () =>
+    this.dispatchEvent(new CustomEvent("game-panel:clickedErrorCell"));
 }
