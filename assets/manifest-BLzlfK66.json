@@ -17,5 +17,19 @@
         "sizes": "512x512",
         "type": "image/png"
       }
-    ]
+    ],
+    "screenshots": [
+        {
+          "src": "/touch-the-mole/images/desktop.png",
+          "sizes": "1434x1255",
+          "type": "image/png",
+          "form_factor": "wide"
+        },
+        {
+          "src": "/touch-the-mole/images/mobile.png",
+          "sizes": "382x731",
+          "type": "image/png",
+          "form_factor": "narrow"
+        }
+      ]
   }
