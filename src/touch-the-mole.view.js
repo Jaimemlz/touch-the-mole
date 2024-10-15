@@ -37,6 +37,7 @@ export class TouchTheMoleView extends TouchTheMoleViewmodel {
   _renderScore = () =>
     html` <score-panel
       .incrementScore=${this._hasIncrementScore}
+      .pointsPerClick=${this._pointsPerClick}
     ></score-panel>`;
 
   _renderGamePanel = () => html` <game-panel

@@ -27,8 +27,21 @@ export class TouchTheMoleViewmodel extends LitElement {
        * When true, the score will be incremented by a specified amount.
        */
       _hasIncrementScore: { type: Boolean, state: true },
+
+      /**
+       * The number of points awarded per click.
+       * This state variable tracks how many points the player earns each time they successfully click a target.
+       */
+      _pointsPerClick: { type: Number, state: true },
     };
   }
+
+  static DIFFICULTY_POINTS = Object.freeze({
+    1: 10, // Fácil: 10 puntos
+    2: 20, // Media: 20 puntos
+    3: 30, // Difícil: 30 puntos
+    4: 40, // Experto: 40 puntos
+  });
 
   constructor() {
     super();
@@ -61,7 +74,9 @@ export class TouchTheMoleViewmodel extends LitElement {
     }
   }
 
-  _changeDifficulty() {}
+  _changeDifficulty = () =>
+    (this._pointsPerClick =
+      TouchTheMoleViewmodel.DIFFICULTY_POINTS[this.difficulty]);
 
   handleLogin(e) {
     this.user = e.detail;
@@ -73,6 +88,7 @@ export class TouchTheMoleViewmodel extends LitElement {
 
   handleDifficultyChanged(e) {
     this.difficulty = e.detail;
+    this._changeDifficulty();
   }
 
   handleLogout() {
