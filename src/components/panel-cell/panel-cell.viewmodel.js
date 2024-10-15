@@ -44,6 +44,10 @@ export class PanelCellViewmodel extends LitElement {
   _handleClick = () => {
     if (!this._clicked) {
       this.dispatchEvent(new CustomEvent("panel-cell:clicked"));
+
+      if (navigator.vibrate) {
+        navigator.vibrate(200);
+      }
     }
     this._clicked = true;
   };

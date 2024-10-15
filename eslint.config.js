@@ -13,6 +13,7 @@ export default [
         clearInterval: "readonly",
         CustomEvent: "readonly",
         setTimeout: "readonly",
+        navigator: "readonly",
       },
     },
   },
