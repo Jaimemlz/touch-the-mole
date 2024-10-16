@@ -45,6 +45,10 @@ export class ScorePanelViewmodel extends LitElement {
   updated(changedProperties) {
     super.updated(changedProperties);
 
+    if (changedProperties.has("resetScore") && this.resetScore) {
+      this._handleResetScore();
+    }
+
     if (
       changedProperties.has("incrementScore") ||
       changedProperties.has("decrementScore")
@@ -65,5 +69,10 @@ export class ScorePanelViewmodel extends LitElement {
         scoreElement.classList.remove("increment", "decrement");
       });
     }
+  }
+
+  _handleResetScore() {
+    this._points = 0;
+    this.resetScore = false;
   }
 }
