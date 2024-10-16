@@ -21,6 +21,12 @@ export class ScorePanelViewmodel extends LitElement {
       incrementScore: { type: Boolean },
 
       /**
+       * A boolean to trigger decrementing the score.
+       * When true, the score will be decremented by a specified amount.
+       */
+      decrementScore: { type: Boolean },
+
+      /**
        * The total number of points accumulated by the player during the game.
        * Points increase when the player successfully clicks on the correct target.
        * This value reflects the player's current score.
@@ -39,19 +45,34 @@ export class ScorePanelViewmodel extends LitElement {
   updated(changedProperties) {
     super.updated(changedProperties);
 
-    if (changedProperties.has("incrementScore") && this.incrementScore) {
-      this._points += this.pointsPerClick;
-
-      this.shadowRoot.querySelector(".score").classList.add("increment");
-      setTimeout(() => {
-        this.shadowRoot.querySelector(".score").classList.remove("increment");
-        this.incrementScore = false;
-      }, 500);
-    }
-
     if (changedProperties.has("resetScore") && this.resetScore) {
-      this._points = 0;
-      this.resetScore = false;
+      this._handleResetScore();
     }
+
+    if (
+      changedProperties.has("incrementScore") ||
+      changedProperties.has("decrementScore")
+    ) {
+      const scoreElement = this.shadowRoot.querySelector(".score");
+
+      if (this.incrementScore) {
+        this._points += this.pointsPerClick;
+        scoreElement.classList.add("increment");
+        this.incrementScore = false;
+      } else if (this.decrementScore) {
+        this._points -= this.pointsPerClick;
+        scoreElement.classList.add("decrement");
+        this.decrementScore = false;
+      }
+
+      scoreElement.addEventListener("animationend", () => {
+        scoreElement.classList.remove("increment", "decrement");
+      });
+    }
+  }
+
+  _handleResetScore() {
+    this._points = 0;
+    this.resetScore = false;
   }
 }

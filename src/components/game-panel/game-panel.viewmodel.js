@@ -21,23 +21,23 @@ export class GamePanelViewmodel extends LitElement {
 
       /**
        * The currently selected difficulty level of the game.
-       * This number corresponds to the player's choice of difficulty, where different values represent specific difficulty tiers.
-       * The possible values are integers that indicate the level, such as 1 for "Easy", 2 for "Medium", 3 for "Hard", and 4 for "Expert".
+       * The possible values are keys that map to specific difficulty levels: "EASY", "MEDIUM", "HARD", and "EXTREME".
        */
-      difficulty: { type: Number },
+      difficulty: { type: String },
 
       /**
-       * The cell has actived.
+       * The cells that are currently active.
+       * This could be a single number (for one active cell) or an array of numbers (for multiple active cells) [dificulty "Experto"].
        */
-      _cellActive: { type: Number, state: true },
+      _cellActive: { type: Array, state: true },
     };
   }
 
   static DIFFICULTY_TIMINGS = Object.freeze({
-    1: 1000, // Fácil: 1000 ms
-    2: 750, // Media: 750 ms
-    3: 500, // Difícil: 500 ms
-    4: 500, // Experto: 500 ms
+    EASY: 1000,
+    MEDIUM: 750,
+    HARD: 500,
+    EXTREME: 1000,
   });
 
   constructor() {
@@ -50,17 +50,29 @@ export class GamePanelViewmodel extends LitElement {
 
   updated(changedProperties) {
     super.updated(changedProperties);
-
     if (changedProperties.has("columns") || changedProperties.has("rows")) {
-      this.style.setProperty("--grid-columns", this.columns);
-      this.style.setProperty("--grid-rows", this.rows);
+      this._updateGridStyle();
     }
 
     if (changedProperties.has("play")) {
-      this.play
-        ? this._startRandomCellGeneration()
-        : this._stopRandomCellGeneration();
+      this._handlePlayState();
     }
+
+    if (changedProperties.has("difficulty")) {
+      this._adjustDifficulty();
+    }
+  }
+
+  _handlePlayState() {
+    this.play
+      ? this._startRandomCellGeneration()
+      : this._stopRandomCellGeneration();
+  }
+
+  _adjustDifficulty() {
+    const gridSize = this.difficulty === "EXTREME" ? 4 : 3;
+    this.columns = gridSize;
+    this.rows = gridSize;
   }
 
   getAnimationTime = () =>
@@ -72,7 +84,6 @@ export class GamePanelViewmodel extends LitElement {
   }
 
   _startRandomCellGeneration() {
-    this._stopRandomCellGeneration();
     this._interval = setInterval(() => {
       this._generateNumCellActived();
     }, this.getAnimationTime());
@@ -86,19 +97,32 @@ export class GamePanelViewmodel extends LitElement {
   }
 
   _generateNumCellActived() {
-    let newNumber;
+    let newNumber1, newNumber2;
+
     do {
-      newNumber = this._generateNumRandom();
-    } while (newNumber === this._cellActive);
-    this._cellActive = newNumber;
+      newNumber1 = this._generateNumRandom();
+    } while (newNumber1 === this._cellActive);
+
+    if (this.difficulty === "EXTREME") {
+      do {
+        newNumber2 = this._generateNumRandom();
+      } while (newNumber2 === newNumber1 || newNumber2 === this._cellActive);
+
+      this._cellActive = [newNumber1, newNumber2];
+    } else {
+      this._cellActive = newNumber1;
+    }
   }
 
   _generateNumRandom() {
     return Math.floor(Math.random() * this.columns * this.rows) + 1;
   }
 
-  handleClickEvent() {
-    const event = new CustomEvent("game-panel:clickedCellActived");
-    this.dispatchEvent(event);
-  }
+  _hasTwentyPercentChance = () => Math.random() < 0.2;
+
+  handleClickEvent = () =>
+    this.dispatchEvent(new CustomEvent("game-panel:clickedCorrectCell"));
+
+  handleErrorClickEvent = () =>
+    this.dispatchEvent(new CustomEvent("game-panel:clickedErrorCell"));
 }

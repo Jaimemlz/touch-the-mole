@@ -14,9 +14,13 @@ export class GamePanelView extends GamePanelViewmodel {
   }
 
   _renderCell(index) {
+    const isActive = Array.isArray(this._cellActive)
+      ? this._cellActive.includes(index)
+      : index === this._cellActive;
+
     return html`
       ${when(
-        index == this._cellActive,
+        isActive && this.play,
         this._renderActiveCell,
         this._renderNormalCell
       )}
@@ -24,9 +28,25 @@ export class GamePanelView extends GamePanelViewmodel {
   }
 
   _renderActiveCell = () => {
+    return html`${when(
+      this._hasTwentyPercentChance(),
+      this._renderErrorCell,
+      this._renderCorrectCell
+    )}`;
+  };
+
+  _renderCorrectCell = () => {
     return html`<panel-cell
       .animationTime=${this.getAnimationTime()}
       @panel-cell:clicked=${this.handleClickEvent}
+    ></panel-cell>`;
+  };
+
+  _renderErrorCell = () => {
+    return html`<panel-cell
+      isErrorCell
+      .animationTime=${this.getAnimationTime()}
+      @panel-cell:clicked=${this.handleErrorClickEvent}
     ></panel-cell>`;
   };
 

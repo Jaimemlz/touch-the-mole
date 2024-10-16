@@ -4,6 +4,12 @@ export class PanelCellViewmodel extends LitElement {
   static get properties() {
     return {
       /**
+       * Indicates if the mole is an "error" cell.
+       * If true, the mole's appearance changes.
+       */
+      isErrorCell: { type: Boolean },
+
+      /**
        * The duration (in milliseconds) for which the mole is visible and clickable in the game.
        */
       animationTime: { type: Number },
@@ -22,12 +28,8 @@ export class PanelCellViewmodel extends LitElement {
 
   updated(changedProperties) {
     super.updated(changedProperties);
-
     if (changedProperties.has("animationTime")) {
-      this.style.setProperty(
-        "--mole-animation-duration",
-        `${this.animationTime}ms`
-      );
+      this._updateAnimationTime();
     }
   }
 
@@ -41,8 +43,21 @@ export class PanelCellViewmodel extends LitElement {
     this.removeEventListener("click", this._handleClick);
   }
 
+  _updateAnimationTime() {
+    this.style.setProperty(
+      "--mole-animation-duration",
+      `${this.animationTime}ms`
+    );
+  }
+
   _handleClick = () => {
+    if (!this._clicked) {
+      this.dispatchEvent(new CustomEvent("panel-cell:clicked"));
+
+      if (navigator.vibrate) {
+        navigator.vibrate(200);
+      }
+    }
     this._clicked = true;
-    return this.dispatchEvent(new CustomEvent("panel-cell:clicked"));
   };
 }
