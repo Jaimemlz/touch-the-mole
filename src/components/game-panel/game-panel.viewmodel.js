@@ -21,10 +21,9 @@ export class GamePanelViewmodel extends LitElement {
 
       /**
        * The currently selected difficulty level of the game.
-       * This number corresponds to the player's choice of difficulty, where different values represent specific difficulty tiers.
-       * The possible values are integers that indicate the level, such as 1 for "Easy", 2 for "Medium", 3 for "Hard", and 4 for "Expert".
+       * The possible values are keys that map to specific difficulty levels: "EASY", "MEDIUM", "HARD", and "EXTREME".
        */
-      difficulty: { type: Number },
+      difficulty: { type: String },
 
       /**
        * The cells that are currently active.
@@ -35,10 +34,10 @@ export class GamePanelViewmodel extends LitElement {
   }
 
   static DIFFICULTY_TIMINGS = Object.freeze({
-    1: 1000, // Fácil: 1000 ms
-    2: 750, // Media: 750 ms
-    3: 500, // Difícil: 500 ms
-    4: 1000, // Experto: 1000 ms
+    EASY: 1000,
+    MEDIUM: 750,
+    HARD: 500,
+    EXTREME: 1000,
   });
 
   constructor() {
@@ -51,22 +50,29 @@ export class GamePanelViewmodel extends LitElement {
 
   updated(changedProperties) {
     super.updated(changedProperties);
-
     if (changedProperties.has("columns") || changedProperties.has("rows")) {
-      this.style.setProperty("--grid-columns", this.columns);
-      this.style.setProperty("--grid-rows", this.rows);
+      this._updateGridStyle();
     }
 
     if (changedProperties.has("play")) {
-      this.play
-        ? this._startRandomCellGeneration()
-        : this._stopRandomCellGeneration();
+      this._handlePlayState();
     }
 
     if (changedProperties.has("difficulty")) {
-      this.columns = this.difficulty === 4 ? 4 : 3;
-      this.rows = this.difficulty === 4 ? 4 : 3;
+      this._adjustDifficulty();
     }
+  }
+
+  _handlePlayState() {
+    this.play
+      ? this._startRandomCellGeneration()
+      : this._stopRandomCellGeneration();
+  }
+
+  _adjustDifficulty() {
+    const gridSize = this.difficulty === "EXTREME" ? 4 : 3;
+    this.columns = gridSize;
+    this.rows = gridSize;
   }
 
   getAnimationTime = () =>
@@ -97,7 +103,7 @@ export class GamePanelViewmodel extends LitElement {
       newNumber1 = this._generateNumRandom();
     } while (newNumber1 === this._cellActive);
 
-    if (this.difficulty === 4) {
+    if (this.difficulty === "EXTREME") {
       do {
         newNumber2 = this._generateNumRandom();
       } while (newNumber2 === newNumber1 || newNumber2 === this._cellActive);

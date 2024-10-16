@@ -5,23 +5,22 @@ export class DifficultyPanelViewmodel extends LitElement {
     return {
       /**
        * The currently selected difficulty level of the game.
-       * This number corresponds to the player's choice of difficulty, where different values represent specific difficulty tiers.
-       * The possible values are integers that indicate the level, such as 1 for "Easy", 2 for "Medium", 3 for "Hard", and 4 for "Expert".
+       * The possible values are keys that map to specific difficulty levels: "EASY", "MEDIUM", "HARD", and "EXTREME".
        */
-      difficulty: { type: Number },
+      difficulty: { type: String },
     };
   }
 
-  static DIFFICULTY_LEVELS = Object.freeze([
-    "Fácil",
-    "Media",
-    "Difícil",
-    "Experto",
-  ]);
+  static DIFFICULTY_LEVELS = Object.freeze({
+    EASY: "Fácil",
+    MEDIUM: "Media",
+    HARD: "Difícil",
+    EXTREME: "Experto",
+  });
 
   constructor() {
     super();
-    this.difficulty = 1;
+    this.difficulty = "EASY";
   }
 
   handleChangeDifficulty(level) {
