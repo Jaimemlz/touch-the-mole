@@ -27,9 +27,10 @@ export class GamePanelViewmodel extends LitElement {
       difficulty: { type: Number },
 
       /**
-       * The cell has actived.
+       * The cells that are currently active.
+       * This could be a single number (for one active cell) or an array of numbers (for multiple active cells) [dificulty "Experto"].
        */
-      _cellActive: { type: Number, state: true },
+      _cellActive: { type: Array, state: true },
     };
   }
 
@@ -37,7 +38,7 @@ export class GamePanelViewmodel extends LitElement {
     1: 1000, // Fácil: 1000 ms
     2: 750, // Media: 750 ms
     3: 500, // Difícil: 500 ms
-    4: 500, // Experto: 500 ms
+    4: 1000, // Experto: 1000 ms
   });
 
   constructor() {
@@ -61,6 +62,11 @@ export class GamePanelViewmodel extends LitElement {
         ? this._startRandomCellGeneration()
         : this._stopRandomCellGeneration();
     }
+
+    if (changedProperties.has("difficulty")) {
+      this.columns = this.difficulty === 4 ? 4 : 3;
+      this.rows = this.difficulty === 4 ? 4 : 3;
+    }
   }
 
   getAnimationTime = () =>
@@ -72,7 +78,6 @@ export class GamePanelViewmodel extends LitElement {
   }
 
   _startRandomCellGeneration() {
-    this._stopRandomCellGeneration();
     this._interval = setInterval(() => {
       this._generateNumCellActived();
     }, this.getAnimationTime());
@@ -86,19 +91,32 @@ export class GamePanelViewmodel extends LitElement {
   }
 
   _generateNumCellActived() {
-    let newNumber;
+    let newNumber1, newNumber2;
+
     do {
-      newNumber = this._generateNumRandom();
-    } while (newNumber === this._cellActive);
-    this._cellActive = newNumber;
+      newNumber1 = this._generateNumRandom();
+    } while (newNumber1 === this._cellActive);
+
+    if (this.difficulty === 4) {
+      do {
+        newNumber2 = this._generateNumRandom();
+      } while (newNumber2 === newNumber1 || newNumber2 === this._cellActive);
+
+      this._cellActive = [newNumber1, newNumber2];
+    } else {
+      this._cellActive = newNumber1;
+    }
   }
 
   _generateNumRandom() {
     return Math.floor(Math.random() * this.columns * this.rows) + 1;
   }
 
-  handleClickEvent() {
-    const event = new CustomEvent("game-panel:clickedCellActived");
-    this.dispatchEvent(event);
-  }
+  _hasTwentyPercentChance = () => Math.random() < 0.2;
+
+  handleClickEvent = () =>
+    this.dispatchEvent(new CustomEvent("game-panel:clickedCorrectCell"));
+
+  handleErrorClickEvent = () =>
+    this.dispatchEvent(new CustomEvent("game-panel:clickedErrorCell"));
 }
