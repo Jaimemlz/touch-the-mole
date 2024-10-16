@@ -55,7 +55,6 @@ export class TouchTheMoleViewmodel extends LitElement {
     this._hasIncrementScore = false;
     this._hasDecrementScore = false;
     this.play = false;
-    this.user = "Jaime";
   }
 
   updated(changedProperties) {
