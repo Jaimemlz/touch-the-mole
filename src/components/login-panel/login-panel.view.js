@@ -7,7 +7,7 @@ export class LoginPanelView extends LoginPanelViewmodel {
 
   render() {
     return html`
-      <label class="login-label" for="name">Escribe tu usario</label>
+      <label class="login-label" for="name">Escribe tu usuario</label>
       <input
         type="text"
         id="name"

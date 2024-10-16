@@ -14,7 +14,17 @@ export default [
         CustomEvent: "readonly",
         setTimeout: "readonly",
         navigator: "readonly",
+        module: "readonly",
+        expect: "readonly",
+        it: "readonly",
+        describe: "readonly",
+        Event: "readonly",
+        KeyboardEvent: "readonly",
       },
+    },
+    env: {
+      browser: true,
+      jest: true,
     },
   },
   {

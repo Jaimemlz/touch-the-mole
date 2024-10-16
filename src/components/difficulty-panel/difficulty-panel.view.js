@@ -7,19 +7,19 @@ export class DifficultyPanelView extends DifficultyPanelViewmodel {
 
   render() {
     return html`
-      ${DifficultyPanelViewmodel.DIFFICULTY_LEVELS.map((level, index) =>
-        this._renderButton(level, index + 1)
+      ${Object.entries(DifficultyPanelViewmodel.DIFFICULTY_LEVELS).map(
+        ([key, level]) => this._renderButton(level, key)
       )}
     `;
   }
 
-  _renderButton = (level, difficultyValue) =>
+  _renderButton = (level, difficultyKey) =>
     html`
       <div
-        class="difficulty-option ${this.difficulty == difficultyValue
+        class="difficulty-option ${this.difficulty === difficultyKey
           ? "selected"
           : ""}"
-        @click="${() => this.handleChangeDifficulty(difficultyValue)}"
+        @click="${() => this.handleChangeDifficulty(difficultyKey)}"
       >
         ${level}
       </div>

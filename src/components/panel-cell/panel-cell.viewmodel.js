@@ -28,12 +28,8 @@ export class PanelCellViewmodel extends LitElement {
 
   updated(changedProperties) {
     super.updated(changedProperties);
-
     if (changedProperties.has("animationTime")) {
-      this.style.setProperty(
-        "--mole-animation-duration",
-        `${this.animationTime}ms`
-      );
+      this._updateAnimationTime();
     }
   }
 
@@ -45,6 +41,13 @@ export class PanelCellViewmodel extends LitElement {
   disconnectedCallback() {
     super.disconnectedCallback();
     this.removeEventListener("click", this._handleClick);
+  }
+
+  _updateAnimationTime() {
+    this.style.setProperty(
+      "--mole-animation-duration",
+      `${this.animationTime}ms`
+    );
   }
 
   _handleClick = () => {

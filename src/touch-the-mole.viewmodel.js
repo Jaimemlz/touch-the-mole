@@ -11,10 +11,9 @@ export class TouchTheMoleViewmodel extends LitElement {
 
       /**
        * The currently selected difficulty level of the game.
-       * This number corresponds to the player's choice of difficulty, where different values represent specific difficulty tiers.
-       * The possible values are integers that indicate the level, such as 1 for "Easy", 2 for "Medium", 3 for "Hard", and 4 for "Expert".
+       * The possible values are keys that map to specific difficulty levels: "EASY", "MEDIUM", "HARD", and "EXTREME".
        */
-      difficulty: { type: Number },
+      difficulty: { type: String },
 
       /**
        * A boolean that indicates whether the mole is currently visible and clickable in the game.
@@ -43,48 +42,39 @@ export class TouchTheMoleViewmodel extends LitElement {
   }
 
   static DIFFICULTY_POINTS = Object.freeze({
-    1: 10, // Fácil: 10 puntos
-    2: 20, // Media: 20 puntos
-    3: 30, // Difícil: 30 puntos
-    4: 40, // Experto: 40 puntos
+    EASY: 10,
+    MEDIUM: 20,
+    HARD: 30,
+    EXTREME: 40,
   });
 
   constructor() {
     super();
-    this.difficulty = 1;
+    this.difficulty = "EASY";
     this._hasIncrementScore = false;
     this._hasDecrementScore = false;
     this.play = false;
-    this.user = "Jaime";
   }
 
   updated(changedProperties) {
     super.updated(changedProperties);
-
     if (changedProperties.has("difficulty")) {
       this._changeDifficulty();
     }
 
-    if (
-      changedProperties.has("_hasIncrementScore") &&
-      this._hasIncrementScore
-    ) {
-      this._hasIncrementScore = false;
-    }
+    ["_hasIncrementScore", "_hasDecrementScore"].forEach((prop) => {
+      if (changedProperties.has(prop)) {
+        this[prop] = false;
+      }
+    });
+    this._handleUserRouting();
+  }
 
-    if (
-      changedProperties.has("_hasDecrementScore") &&
-      this._hasDecrementScore
-    ) {
-      this._hasDecrementScore = false;
-    }
-
-    if (this.user && window.location.pathname !== "/touch-the-mole/game") {
+  _handleUserRouting() {
+    const currentPath = window.location.pathname;
+    if (this.user && currentPath !== "/touch-the-mole/game") {
       Router.go("/touch-the-mole/game");
-    } else if (
-      !this.user &&
-      window.location.pathname !== "/touch-the-mole/home"
-    ) {
+    } else if (!this.user && currentPath !== "/touch-the-mole/home") {
       Router.go("/touch-the-mole/home");
     }
   }
