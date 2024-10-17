@@ -1,6 +1,9 @@
 import js from "@eslint/js";
 
 export default [
+  {
+    ignores: ["dist/**", "node_modules/**"],
+  },
   js.configs.recommended,
   {
     languageOptions: {
@@ -22,15 +25,6 @@ export default [
         KeyboardEvent: "readonly",
       },
     },
-    env: {
-      browser: true,
-      jest: true,
-    },
-  },
-  {
-    ignores: ["dist/**", "node_modules/**"],
-  },
-  {
     rules: {
       semi: ["warn", "always"],
     },
