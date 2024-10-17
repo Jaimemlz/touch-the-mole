@@ -24,6 +24,11 @@ export const touchTheMoleStyles = css`
     box-sizing: border-box;
   }
 
+  .game__header-left{
+    display: flex;
+    gap: 15px;
+  }
+
   .game__user {
     display: flex;
     align-items: center;
@@ -43,7 +48,7 @@ export const touchTheMoleStyles = css`
     box-shadow: 0 0px 5px white;
   }
 
-  .game__user p {
+  .game__user p, .game__download p {
     font-family: "Poppins", sans-serif;
     font-size: 20px;
     color: white;
@@ -73,17 +78,25 @@ export const touchTheMoleStyles = css`
     margin: 0 auto;
   }
 
+  .game__download{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
   .game__toggle-button {
-    border: 2px solid white;
-    border-radius: 50%;
-    padding: 5px;
+    padding: 10px;
+    margin: 5px;
+    font-size: 18px;
     cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    background-color: white;
     transition: background-color 0.3s ease;
-    position: absolute;
-    left: 50%;
-    z-index: 1;
-    transform: translateX(-50%);
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    border: 3px solid rgb(255, 255, 255);
+    color: white;
   }
 
   .game__toggle-button img {
@@ -94,11 +107,12 @@ export const touchTheMoleStyles = css`
   }
 
   .game__toggle-button--on {
-    background-color: #2ecc71;
+    background: radial-gradient(circle, #AE7C56, rgb(231, 209, 155));
   }
 
   .game__toggle-button--pause {
-    background-color: #e74c3c;
+    background: radial-gradient(circle, #ae5656, rgb(231, 209, 155));
+
   }
 
   .game__toggle-button:hover {
@@ -106,20 +120,10 @@ export const touchTheMoleStyles = css`
   }
 
   difficulty-panel {
-    margin: 35px 0;
+    margin-bottom: 35px;
   }
 
   p {
     margin: 0;
-  }
-
-  @media screen and (max-width: 600px) {
-    .game__toggle-button {
-      bottom: 50px;
-    }
-
-    :host {
-      gap: 0;
-    }
   }
 `;

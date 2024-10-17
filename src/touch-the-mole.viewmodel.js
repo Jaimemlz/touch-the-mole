@@ -54,6 +54,21 @@ export class TouchTheMoleViewmodel extends LitElement {
     this._hasIncrementScore = false;
     this._hasDecrementScore = false;
     this.play = false;
+
+    window.addEventListener("beforeinstallprompt", (event) => {
+      event.preventDefault();
+      this.deferredPrompt = event;
+    });
+  }
+
+  handleInstallPWA() {
+    if (this.deferredPrompt) {
+      this.deferredPrompt.prompt();
+
+      this.deferredPrompt.userChoice.then(() => {
+        this.deferredPrompt = null;
+      });
+    }
   }
 
   updated(changedProperties) {

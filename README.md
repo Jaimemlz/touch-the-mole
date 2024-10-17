@@ -24,7 +24,11 @@
      - **Alto**: 500ms por topo, +30 puntos por acierto.
      - **Extremo**: 1000ms por topo, +40 pero pueden aparecen varios topos a la vez y la cuadrícula pasa a ser de 4x4.
 3. **Topos Malos**: Existe un 20% de posibilidad de que aparezca un "topo malo". Si haces clic en un topo malo, en lugar de sumar puntos, se te restarán puntos.
-4. **Funcionalidad de PWA**: Una vez cargada, la aplicación funciona sin conexión, permitiéndote seguir jugando incluso en modo avión.
+4. **Funcionalidad de PWA**: La aplicación está configurada como una **PWA (Progressive Web App)**, lo que significa que podrás instalarla en tu dispositivo y usarla sin conexión una vez instalada. Para descargar la aplicación y tenerla disponible como una aplicación en tu móvil o PC, sigue estos pasos:
+
+   - **Inicia sesión** en la aplicación.
+   - Después de iniciar sesión, verás un botón con el icono de descargar, que te permitirá instalar la aplicación en tu dispositivo.
+   - Una vez instalada, podrás acceder a la aplicación directamente desde tu pantalla de inicio y usarla en modo sin conexión, incluso en modo avión.
 
 ## 🛠️ Tecnologías utilizadas
 

@@ -15,24 +15,36 @@ export class TouchTheMoleView extends TouchTheMoleViewmodel {
     return html` ${when(this.user, this._renderPage, this._renderLoginPanel)}`;
   }
 
-  _renderLoginPanel = () =>
-    html` <login-panel @login-panel:login=${this.handleLogin}></login-panel> `;
+  _renderLoginPanel = () => html`
+    <login-panel @login-panel:login=${this.handleLogin}></login-panel>
+  `;
 
   _renderPage = () => html`
     ${this._renderHeader()} ${this._renderScore()} ${this._renderGamePanel()}
-    ${this._renderDifficultyPanel()}
+    ${this._renderButtonStartOrPause()} ${this._renderDifficultyPanel()}
   `;
 
-  _renderHeader = () => html` <div class="game__header">
-    <div class="game__user">
-      <img src="./images/user.svg" />
-      <p>${this.user}</p>
-    </div>
-    ${this._renderButtonStartOrPause()}
-    <button @click=${this.handleLogout} class="game__logout">
+  _renderHeader = () =>
+    html` <div class="game__header">
+      <div class="game__header-left">
+        <div class="game__user">
+          <img src="./images/user.svg" />
+          <p>${this.user}</p>
+        </div>
+        ${this._renderLogoutButton()}
+      </div>
+      ${this._renderInstallButton()}
+    </div>`;
+
+  _renderLogoutButton = () =>
+    html` <button @click=${this.handleLogout} class="game__logout" type="button">
       <img src="./images/logout.svg" />
-    </button>
-  </div>`;
+    </button>`;
+
+  _renderInstallButton = () =>
+    html`  <div class="game__download"><p>Descargar:</p><button @click=${this.handleInstallPWA} class="game__logout" type="button">
+      <img src="./images/download.svg" />
+    </button></div>`;
 
   _renderScore = () =>
     html` <score-panel
@@ -64,6 +76,7 @@ export class TouchTheMoleView extends TouchTheMoleViewmodel {
     return html` <button
       class="game__toggle-button ${classMap(classes)}"
       @click=${this.handleToggleGame}
+      type="button"
     >
       ${when(
         this.play,
