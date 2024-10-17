@@ -518,7 +518,7 @@ try {
     box-sizing: border-box;
   }
 
-  .game__header-left{
+  .game__header-left {
     display: flex;
     gap: 15px;
   }
@@ -542,7 +542,8 @@ try {
     box-shadow: 0 0px 5px white;
   }
 
-  .game__user p, .game__download p {
+  .game__user p,
+  .game__download p {
     font-family: "Poppins", sans-serif;
     font-size: 20px;
     color: white;
@@ -572,7 +573,7 @@ try {
     margin: 0 auto;
   }
 
-  .game__download{
+  .game__download {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -588,6 +589,7 @@ try {
     transition: background-color 0.3s ease;
     text-align: center;
     width: 100%;
+    width: 90vw;
     max-width: 600px;
     border: 3px solid rgb(255, 255, 255);
     color: white;
@@ -601,12 +603,11 @@ try {
   }
 
   .game__toggle-button--on {
-    background: radial-gradient(circle, #AE7C56, rgb(231, 209, 155));
+    background: radial-gradient(circle, #ae7c56, rgb(231, 209, 155));
   }
 
   .game__toggle-button--pause {
     background: radial-gradient(circle, #ae5656, rgb(231, 209, 155));
-
   }
 
   .game__toggle-button:hover {
