@@ -35,7 +35,6 @@ export class LoginPanelViewmodel extends LitElement {
     } else {
       errorMessage.classList.remove('active');
       input.classList.remove('error');
-      console.log('Usuario válido:', this.user);
 
       this.dispatchEvent(
         new CustomEvent('login-panel:login', { detail: this.user })
