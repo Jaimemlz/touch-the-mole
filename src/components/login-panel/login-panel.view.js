@@ -15,7 +15,11 @@ export class LoginPanelView extends LoginPanelViewmodel {
         placeholder="Tu usuario aqui"
         @input=${this.handleInput}
         @keydown=${this.handleKeyDown}
+        required
       />
+      <span id="error-message" class="error-message">
+        Por favor, introduce tu usuario.
+      </span>
       <button class="login-button" @click=${this.handleLogin}>Jugar</button>
     `;
   }

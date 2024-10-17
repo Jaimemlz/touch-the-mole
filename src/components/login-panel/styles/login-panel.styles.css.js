@@ -65,4 +65,22 @@ export const LoginPanelStyles = css`
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     transform: scale(0.98);
   }
+  .error-message {
+    color: #9b3a3a;
+    font-size: 14px;
+    margin-top: 5px;
+    height: 16px; 
+    visibility: hidden;
+    font-family: "Poppins", sans-serif;
+    margin-top: -25px;
+  }
+
+  .error-message.active {
+    visibility: visible; 
+  }
+
+  .login-input.error {
+    border-color: #9b3a3a;
+    box-shadow: 0 4px 8px rgba(255, 77, 77, 0.5);
+  }
 `;

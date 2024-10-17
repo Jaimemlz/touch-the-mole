@@ -20,12 +20,26 @@ export class LoginPanelViewmodel extends LitElement {
 
   handleKeyDown(e) {
     if (e.key === "Enter") {
-      this.handleLogin();
+      this.handleLogin(e);
     }
   }
 
-  handleLogin = () =>
-    this.dispatchEvent(
-      new CustomEvent("login-panel:login", { detail: this.user })
-    );
+  handleLogin(e) {
+    e.preventDefault();
+    const input = this.renderRoot.querySelector('#name');
+    const errorMessage = this.renderRoot.querySelector('#error-message');
+
+    if (!input.checkValidity()) {
+      errorMessage.classList.add('active');
+      input.classList.add('error');
+    } else {
+      errorMessage.classList.remove('active');
+      input.classList.remove('error');
+      console.log('Usuario válido:', this.user);
+
+      this.dispatchEvent(
+        new CustomEvent('login-panel:login', { detail: this.user })
+      );
+    }
+  }
 }
