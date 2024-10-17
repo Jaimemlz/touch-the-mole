@@ -15,7 +15,7 @@ export const PanelCellStyles = css`
   .cell__mole {
     width: 70%;
     height: 70%;
-    cursor: pointer;
+    cursor: url('images/hammer.png'), auto;
     opacity: 0;
   }
 

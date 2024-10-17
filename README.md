@@ -122,6 +122,7 @@ npm run test
 - **Modo Extremo**: Se ha añadido un nivel de dificultad extra donde aparecen varios topos al mismo tiempo y la cuadrícula cambia a 4x4.
 - **Vibración**: Implementada la funcionalidad de vibración en dispositivos móviles cuando se clica en el topo correcto.
 - **Validación de Nombre de Usuario**: Antes de que comience el juego, se realiza una validación para asegurarse de que el jugador ha ingresado su nombre. Si el campo de nombre de usuario está vacío, el juego no comenzará y se mostrará un mensaje de error solicitando al jugador que introduzca su nombre.
+- **Cursor Personalizado de Martillo**: Ahora, al pasar el cursor sobre los topos, se muestra un cursor en forma de martillo.
 
 ## 📄 Licencia
 
